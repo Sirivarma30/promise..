@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Promise Day 🤍</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#e0c3fc,#8ec5fc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Georgia',serif;
+  overflow:hidden;
+}
+.container{
+  width:95%;
+  max-width:420px;
+  text-align:center;
+  color:#fff;
+}
+.hidden{display:none;}
+
+button{
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+  margin:10px;
+  cursor:pointer;
+  background:#6a4c93;
+  color:white;
+}
+.back{
+  background:transparent;
+  color:white;
+  font-size:14px;
+}
+
+/* Bounce */
+.bounce{
+  animation:bounce 1.4s infinite;
+  font-size:26px;
+  font-weight:bold;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* Card */
+.card{
+  background:rgba(255,255,255,0.95);
+  color:#4a3f55;
+  padding:22px;
+  border-radius:18px;
+  font-size:15px;
+  line-height:1.8;
+  box-shadow:0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* Animated Holding Hands */
+.couple{
+  font-size:70px;
+  animation:hold 2s ease-in-out infinite;
+  margin-top:10px;
+}
+@keyframes hold{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+/* Floating Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  animation:float linear infinite;
+  opacity:0.7;
+}
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HOME -->
+<div id="home">
+  <div style="font-size:60px;">🤍</div>
+  <p style="font-size:18px;">I have a promise to make…</p>
+  <button onclick="goWish()">Open ✨</button>
+</div>
+
+<!-- WISH -->
+<div id="wish" class="hidden">
+  <div class="bounce">
+    Happyyy Promise Dayyy my forever 🤍
+  </div>
+
+  <button onclick="goMessage()">Read my promise 💌</button><br>
+  <button class="back" onclick="goHome()">← Back</button>
+</div>
+
+<!-- MESSAGE -->
+<div id="message" class="hidden">
+  <div class="card">
+    Today isn’t about loud vows or dramatic words.
+    It’s about the quiet promises that build a lifetime.
+
+    <br><br>
+
+    I promise to choose you —
+    not just on easy days,
+    but on the days when life feels heavy and uncertain.
+    I promise to stay when things need patience,
+    to listen when words are hard to say,
+    and to hold your hand even when the path isn’t clear.
+
+    <br><br>
+
+    I promise to grow with you,
+    to build a future that feels safe and steady,
+    to dream about peaceful mornings,
+    and a thousand ordinary days made special because we share them.
+
+    <br><br>
+
+    I promise that no matter how time changes us,
+    my respect, care, and love for you
+    will only deepen.
+
+    <br><br>
+
+    And years from now,
+    when we look back at this moment,
+    I want us to smile —
+    knowing this was one of the quiet beginnings
+    of something truly forever 🤍
+  </div>
+
+  <button onclick="goFinal()">Forever 🤍</button><br>
+  <button class="back" onclick="goWish()">← Back</button>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="hidden">
+  <div class="couple">🫶🤝🫶</div>
+
+  <p style="font-size:16px;margin-top:10px;">
+    No matter where life takes us,
+    my hand will always find yours 🤍
+  </p>
+
+  <button class="back" onclick="goMessage()">← Back</button>
+</div>
+
+</div>
+
+<script>
+let heartInterval;
+
+function hideAll(){
+  document.querySelectorAll(".container > div")
+    .forEach(d=>d.classList.add("hidden"));
+  clearInterval(heartInterval);
+}
+
+function goHome(){ hideAll(); document.getElementById("home").classList.remove("hidden"); }
+function goWish(){ hideAll(); document.getElementById("wish").classList.remove("hidden"); }
+function goMessage(){ hideAll(); document.getElementById("message").classList.remove("hidden"); }
+function goFinal(){ hideAll(); document.getElementById("final").classList.remove("hidden"); startHearts(); }
+
+function startHearts(){
+  heartInterval=setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="🤍";
+    h.style.left=Math.random()*100+"%";
+    h.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  },400);
+}
+</script>
+
+</body>
+</html>
